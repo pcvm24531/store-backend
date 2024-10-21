@@ -1,22 +1,11 @@
-const user = [
-    {
-        id: 0,
-        name:"Lucas",
-        lastname:"Chavez",
-        age: 28
-    },
-    {
-        id: 1,
-        name:"Marco",
-        lastname:"Barreto",
-        age: 28
-    },
-    {
-        id: 2,
-        name:"Americo",
-        lastname:"Gomez",
-        age: 28
-    }
-];
+'use strict'
 
-module.exports = user;
+const mongoose = require('mongoose');
+const schema = require('./user.schema');
+
+const DOCUMENT = 'user';
+let user = mongoose.model(DOCUMENT, schema.userSchema);
+
+async function save(data) {
+    return await user.create(data);
+}
