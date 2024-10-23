@@ -7,6 +7,7 @@ const userController = require('../user/user.controller')
 router.get('/', userController.get )
 .post('/', userController.save )
 .put('/', userController.update )
-.delete('/', userController.remove );
+.delete('/', userController.remove )
+.get('/:id', userController.getById );
 
 module.exports = router;

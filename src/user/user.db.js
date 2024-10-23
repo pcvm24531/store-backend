@@ -14,7 +14,11 @@ async function get(){
     return await user.find();
 }
 
+async function getById(id) {
+    return await user.findById(id);
+}
 module.exports={
     save,
-    get
+    get,
+    getById
 }
