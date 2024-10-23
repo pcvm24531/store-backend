@@ -1,12 +1,18 @@
 'use strict'
 
-const userDB = require('./user.db');
+const db = require('./user.db');
 
-function save(req, res) {
-    return res.status(201).json({msg:'Create User'});
+async function save(req, res) {  
+    console.log(req.body);    
+    const newUser = req.body;
+    const userSave = await db.save(newUser);
+    if( !newUser ) return res.status(400).json({'msj':"Bad Request"});
+    return res.status(200).json(userSave);
 }
-function get(req, res) {
-    return res.status(200).json( userDB );
+async function get(req, res) {
+    const users = await db.get();
+    if(!users) return res.status(404).json({'msg':'No se encontro resultados!'});
+    return res.status(200).json( users );
 }
 function update(req, res) {
     return res.status(200).json( {msg:'Update User'} )
