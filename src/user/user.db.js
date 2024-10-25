@@ -17,8 +17,20 @@ async function get(){
 async function getById(id) {
     return await user.findById(id);
 }
+
+async function put(id, data) {
+    const response = await user.replaceOne( { _id: id }, data );
+    return getById(id);
+}
+
+async function remove(id){
+    return  user.findOneAndDelete( { _id: id } );
+}
+
 module.exports={
     save,
     get,
-    getById
+    getById,
+    put,
+    remove
 }

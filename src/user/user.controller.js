@@ -17,11 +17,13 @@ async function getById(req, res) {
     const user = await userModel.getById( req.params.id );
     return res.status(200).json(user);
 }
-function update(req, res) {
-    return res.status(200).json( {msg:'Update User'} );
+async function update(req, res) {
+    const user = await userModel.update( req.params.id, req.body );
+    return res.status(200).json(user);
 }
-function remove(req, res) {
-    return res.status(200).json({msg:'Delete User'});
+async function remove(req, res) {
+    const user = await userModel.remove(req.params.id);
+    return res.status(200).json(user);
 }
 
 module.exports = {

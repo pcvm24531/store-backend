@@ -11,8 +11,8 @@ router.get('/', userController.get )
     userMiddleWare.upload.single('photo'), 
     userController.save 
 )
-.put('/', userController.update )
-.delete('/', userController.remove )
+.put('/:id', userController.update )
+.delete('/:id', userController.remove )
 .get('/:id', userController.getById );
 
 module.exports = router;
