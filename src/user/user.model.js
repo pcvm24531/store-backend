@@ -9,6 +9,7 @@ function save(user) {
 function getAll(){
     return db.get();
 }
+
 function getById(id) {
     return db.getById(id);
 }
