@@ -5,14 +5,14 @@ const router = express.Router();
 const userController = require('../user/user.controller');
 const userMiddleWare = require("../user/user.middleware");
 
-router.get('/', userController.get )
-.post(
+router.post(
     '/', 
     userMiddleWare.upload.single('photo'), 
     userController.save 
-)
-.put('/:id', userController.update )
-.delete('/:id', userController.remove )
-.get('/:id', userController.getById );
+);
+router.get('/', userController.get );
+router.get('/:id', userController.getById );
+router.put('/:id', userController.update );
+router.delete('/:id', userController.remove );
 
 module.exports = router;

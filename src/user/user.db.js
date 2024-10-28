@@ -19,7 +19,7 @@ async function getById(id) {
 }
 
 async function put(id, data) {
-    const response = await user.replaceOne( { _id: id }, data );
+    await user.replaceOne( { _id: id }, data );
     return getById(id);
 }
 

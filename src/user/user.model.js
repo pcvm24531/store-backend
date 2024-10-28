@@ -14,7 +14,7 @@ function getById(id) {
     return db.getById(id);
 }
 
-function update(id, data) {
+function put(id, data) {
     return db.put(id, data);
 }
 
@@ -26,6 +26,6 @@ module.exports = {
     save, 
     getAll,
     getById,
-    update,
+    put,
     remove
 }
