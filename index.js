@@ -12,7 +12,8 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use('/photos', express.static(path.join(__dirname,'photos')));//Exponemos la carpeta photos al cliente
+//Exponemos la carpeta photos al cliente
+app.use('/photos', express.static(path.join(__dirname,'photos')));
 
 require('./src/routes')(app);
 
