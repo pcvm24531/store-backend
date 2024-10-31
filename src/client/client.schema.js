@@ -47,6 +47,10 @@ let clientSchema = new Schema(
             type: Date,
             default: Date.now
         }
+    },
+    {
+        versionKey:false,
+        timestamps:{createdAt: 'creation_date', updatedAt: 'last_update'}
     }
 );
 
