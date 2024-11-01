@@ -67,11 +67,11 @@ let productSchema = new Schema(
         },
         //precio de compra
         purchase_price:{
-            type: Number,
+            type: mongoose.Types.Decimal128,
             required: true
         },
         sale_price:{
-            type: Number,
+            type: mongoose.Types.Decimal128,
             required: true
         },
         current_stock:{
@@ -107,13 +107,18 @@ let productSchema = new Schema(
             trim: true
         },
         //Datos del proveedor
-        supllier:{
+        supplier:{
             type: String,
             trim: true
         },
         //Contacto de proveedor
         supplier_contact:{
             type: String,
+            trim: true
+        },
+        image:{
+            type: String,
+            default: null,
             trim: true
         }
     },

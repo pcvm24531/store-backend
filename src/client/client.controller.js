@@ -17,11 +17,15 @@ async function getById(req, res) {
     if( !client ) return res.status(400).json( {'msj':'Bad Request'} );
     return res.status(200).json(client);
 }
-function update(req, res) {
-    return res.status(200).json({msg:'Update Client'});
+async function update(req, res) {
+    const client = await model.put( req.params.id, req.body );
+    if ( !client ) return res.status(400).json({'msg':'Bad Request'});
+    return res.status(200).json(client);
 }
-function remove(req, res) {
-    return res.status(200).json({msg:'Delete Client'});
+async function remove(req, res) {
+    const client = await model.remove( req.params.id );
+    if( !client ) return res.status(400).json({'msg':'Bad Request'});
+    return res.status(200).json(client);
 }
 
 module.exports = {
