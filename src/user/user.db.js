@@ -1,22 +1,36 @@
-const user = [
-    {
-        id: 0,
-        name:"Lucas",
-        lastname:"Chavez",
-        age: 28
-    },
-    {
-        id: 1,
-        name:"Marco",
-        lastname:"Barreto",
-        age: 28
-    },
-    {
-        id: 2,
-        name:"Americo",
-        lastname:"Gomez",
-        age: 28
-    }
-];
+'use strict'
 
-module.exports = user;
+const mongoose = require('mongoose');
+const schema = require('./user.schema');
+
+const DOCUMENT = 'user';
+let user = mongoose.model(DOCUMENT, schema.userSchema);
+
+async function save(data) {
+    return await user.create(data);
+}
+
+async function get(){
+    return await user.find();
+}
+
+async function getById(id) {
+    return await user.findById(id);
+}
+
+async function put(id, data) {
+    await user.replaceOne( { _id: id }, data );
+    return getById(id);
+}
+
+async function remove(id){
+    return  user.findOneAndDelete( { _id: id } );
+}
+
+module.exports={
+    save,
+    get,
+    getById,
+    put,
+    remove
+}
