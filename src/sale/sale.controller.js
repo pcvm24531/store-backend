@@ -1,7 +1,11 @@
 'use strict'
 
-function save(req, res) {
-    return res.status(201).json({msg:'Create Sale'});
+const model = require('./sale.model');
+
+async function save(req, res) {
+    const saveSale = await model.save( req.body );
+    if( !saveSale ) return res.status(400).json({'msg':'Bad Request'});
+    return res.status(201).json(saveSale);
 }
 function get(req, res) {
     return res.status(200).json({msg:'Get Sale'});
