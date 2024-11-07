@@ -20,13 +20,11 @@ const saleSchema = (
             ref: 'User', 
             required:true 
         },
-        products: [
-            {
-                product:{type: Schema.Types.ObjectId, ref: 'Product', required: true},
-                quantity:{ type: Number, required: true},
-                unitPrice:{ type: Number, required: true}
-            }
-        ],
+        products: {
+            type: Schema.Types.ObjectId,
+            ref: 'Product',
+            required: true
+        },
         totalAmount: {
             type: Number,
             required: true
@@ -40,6 +38,11 @@ const saleSchema = (
             type: String,
             enum:['completada','pendiente','cancelada'],
             required: true
+        },
+        sale_date:{
+            type: Date,
+            required: true,
+            default: Date.now()
         }
     }
 );

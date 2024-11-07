@@ -8,7 +8,6 @@ const saleController = require('../sale/sale.controller');
 router.post('/', saleController.save);
 router.get('/', saleController.get);
 router.get('/:id', saleController.getById);
-router.put('/', saleController.update);
-router.delete('/', saleController.remove);
+router.put('/:id/:statusSale', saleController.updateStatus);
 
 module.exports = router;

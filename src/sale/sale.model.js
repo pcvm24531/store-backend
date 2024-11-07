@@ -11,8 +11,12 @@ function getAll() {
 function getById(id) {
     return db.getById(id);
 }
+function update(id, status) {
+    return db.updateStatusSale(id, status);
+}
 module.exports = {
     save,
     getAll,
-    getById
+    getById,
+    update
 }
