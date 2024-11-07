@@ -7,13 +7,25 @@ const DOCUMENT = 'sale';
 let sale = mongoose.model( DOCUMENT, schema.saleSchema );
 
 async function save( data ) {
-    return await sale.create( data );
+    try {
+        return await sale.create( data );
+    } catch (error) {
+        return error;
+    }
 }
 async function getAll(){
-    return await sale.find();
+    try {
+        return await sale.find();
+    } catch (error) {
+        return error;
+    }
 }
 async function getById(id) {
-    return await sale.findById(id);
+    try {
+        return await sale.findById(id);
+    } catch (error) {
+        return error;
+    }
 }
 async function updateStatusSale(id, status) {
     try {
@@ -23,8 +35,7 @@ async function updateStatusSale(id, status) {
         );
         return getById(id);
     } catch (error) {
-        console.log(`Error: ${error}`);
-        throw new Error('Error al actualizar la venta.');
+        return error;
     }
     
 }
