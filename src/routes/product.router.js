@@ -3,11 +3,11 @@
 const express = require("express");
 const router = express.Router();
 const productController = require('../product/product.controller');
-const productMuddleware = require('../product/product.middleware');
+const uploadImageMiddleware = require('../middlewares/uploadImage.middleware');
 
 router.post(
     '/', 
-    productMuddleware.upload.single('image'), 
+    uploadImageMiddleware.upload.single('image'), 
     productController.save 
 );
 router.get( '/', productController.get );

@@ -4,6 +4,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path');
 const dbMongo = require('./src/config/mongodb');
+require('dotenv').config();
 
 dbMongo.connect();
 
