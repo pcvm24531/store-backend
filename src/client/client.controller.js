@@ -3,29 +3,49 @@
 const model = require('./client.model');
 
 async function save(req, res) {
-    const newClient = await model.save( req.body );
-    if ( !newClient ) return res.status(400).json({'msj':'Bad Request'});
-    return res.status(200).json(newClient);
+    try {
+        const newClient = await model.save( req.body );
+        if ( !newClient ) return res.status(400).json({'msj':'Bad Request'});
+        return res.status(200).json(newClient);
+    } catch (error) {
+        return res.status(400).json({'error':error});
+    }
 }
 async function getAll(req, res) {
-    const getAllClients = await model.getAll();
-    if( !getAllClients ) return res.status(400).json({'msj':'Bad Request'});
-    return res.status(200).json(getAllClients);
+    try {
+        const getAllClients = await model.getAll();
+        if( !getAllClients ) return res.status(400).json({'msj':'Bad Request'});
+        return res.status(200).json(getAllClients);
+    } catch (error) {
+        return res.status(400).json({'error':error});
+    }
 }
 async function getById(req, res) {
-    const client = await model.getById( req.params.id );
-    if( !client ) return res.status(400).json( {'msj':'Bad Request'} );
-    return res.status(200).json(client);
+    try {
+        const client = await model.getById( req.params.id );
+        if( !client ) return res.status(400).json( {'msj':'Bad Request'} );
+        return res.status(200).json(client);
+    } catch (error) {
+        return res.status(400).json({'msj':error});
+    }
 }
 async function update(req, res) {
-    const client = await model.put( req.params.id, req.body );
-    if ( !client ) return res.status(400).json({'msg':'Bad Request'});
-    return res.status(200).json(client);
+    try {
+        const client = await model.put( req.params.id, req.body );
+        if ( !client ) return res.status(400).json({'msg':'Bad Request'});
+        return res.status(200).json(client);
+    } catch (error) {
+        return res.status(400).json({'msj':error});
+    }
 }
 async function remove(req, res) {
-    const client = await model.remove( req.params.id );
-    if( !client ) return res.status(400).json({'msg':'Bad Request'});
-    return res.status(200).json(client);
+    try {
+        const client = await model.remove( req.params.id );
+        if( !client ) return res.status(400).json({'msg':'Bad Request'});
+        return res.status(200).json(client);
+    } catch (error) {
+        return res.status(400).json({'msj':error});
+    }
 }
 
 module.exports = {
