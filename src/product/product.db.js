@@ -8,7 +8,12 @@ let product = mongoose.model( DOCUMENT, schema.productSchema );
 
 async function save( data ) {
     try {
-        return await product.create( data );
+        const result = await product.create( data );
+        if( !result ) return {
+            status: 400,
+            message:'No se ha podido guardar los datos'
+        };
+        return {status:200, result};
     } catch (error) {
         throw new Error("file.db error:"+error);
     }    
@@ -16,7 +21,9 @@ async function save( data ) {
 
 async function getAll() {
     try {
-        return await product.find();
+        const result = await product.find();
+        if(!result) return {status: 400, message:"No se ha podido obtener los datos"}
+        return {status: 200, result };
     } catch (error) {
         throw new Error("file.db error:"+error);
     }
@@ -34,8 +41,10 @@ async function getById(id) {
 
 async function update( id, data ) {
     try {
-        await product.replaceOne( {_id: id}, data );
-        return getById(id);
+        const result = await product.replaceOne( {_id: id}, data );
+        if(!result) return{status:400, message:"No se ha podido guardar los datos"};
+        const product = getById(id);
+        return {status:200, product };
     } catch (error) {
         throw new Error("file.db error:"+error);
     }
@@ -43,7 +52,9 @@ async function update( id, data ) {
 
 async function remove( id ) {
     try {
-        return await product.findByIdAndDelete( id );
+        const result = await product.findByIdAndDelete( id );
+        if(!result) return {status: 400, message:'No se puede eliminar el producto'};
+        return {status: 200, result};
     } catch (error) {
         throw new Error("file.db error:"+error);
     }
