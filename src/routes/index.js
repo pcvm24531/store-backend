@@ -5,9 +5,10 @@ const productRouter = require('./product.router');
 const clientRouter = require('./client.router');
 const saleRouter = require('./sale.router');
 const loginRouter = require('./login.router');
+const middlewareSecurity = require('../middlewares/encrypt.middleware');
 
 function routes(app) {
-    app.use('/api/user', userRouter);
+    app.use('/api/user', middlewareSecurity.verifyToken, userRouter);
     app.use('/api/product', productRouter);
     app.use('/api/client', clientRouter);
     app.use('/api/sale', saleRouter);
