@@ -7,24 +7,52 @@ const DOCUMENT = 'user';
 let user = mongoose.model(DOCUMENT, schema.userSchema);
 
 async function save(data) {
-    return await user.create(data);
+    try {
+        return await user.create(data);
+    } catch (error) {
+        return error;
+    }
 }
 
 async function get(){
-    return await user.find();
+    try {
+        return await user.find();
+    } catch (error) {
+        return error;
+    }
 }
 
 async function getById(id) {
-    return await user.findById(id);
+    try {
+        return await user.findById(id);
+    } catch (error) {
+        return error;
+    }
 }
 
 async function put(id, data) {
-    await user.replaceOne( { _id: id }, data );
+    try {
+        await user.replaceOne( { _id: id }, data );
     return getById(id);
+    } catch (error) {
+        return error;
+    }
 }
 
 async function remove(id){
-    return  user.findOneAndDelete( { _id: id } );
+    try {
+        return  user.findOneAndDelete( { _id: id } );
+    } catch (error) {
+        return error;
+    }
+}
+
+async function find(data) {
+    try {
+        return user.find( data );//Data debe llegar estructurado
+    } catch (error) {
+        return error;
+    }
 }
 
 module.exports={
@@ -32,5 +60,6 @@ module.exports={
     get,
     getById,
     put,
-    remove
+    remove,
+    find
 }
