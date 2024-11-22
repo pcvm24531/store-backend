@@ -17,7 +17,7 @@ async function auth( req, res ) {
 
         if(userIsValid){
             const token = createToken();
-            return res.status(200).json(token);
+            return res.status(200).json({token: token});
         }
     } catch (error) {
         return error;
@@ -28,7 +28,7 @@ function createToken() {
     const token = jwt.sign(
         {course: COURSE},
         KEY,
-        {expiresIn: 60*2}//60 segudos por 2
+        {expiresIn: 60*10}//60 segudos por 2
     );
     return token;
 }
