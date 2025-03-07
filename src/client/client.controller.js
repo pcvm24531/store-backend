@@ -13,9 +13,9 @@ async function save(req, res) {
 }
 async function getAll(req, res) {
     try {
-        const getAllClients = await model.getAll();
-        if( !getAllClients ) return res.status(400).json({'msj':'Bad Request'});
-        return res.status(200).json(getAllClients);
+        const clients = await model.getAll();
+        if( !clients ) return res.status(400).json({'msj':'Bad Request'});
+        return res.status(200).json(clients);
     } catch (error) {
         return res.status(400).json({'error':error});
     }

@@ -23,7 +23,7 @@ async function put(id, data) {
     return getById(id);
 }
 
-async function remove(id) {
+async function remove(id) {console.log(`Eliminar el ID: ${id}`);
     return await client.findOneAndDelete( {_id: id} );
 }
 module.exports = {
