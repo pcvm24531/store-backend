@@ -4,7 +4,7 @@ const model = require('./user.model');
 
 async function save(req, res) {
     try {
-        req.body.photo = `/photos/${req.file.filename}`;//Capturamos el nobre de la foto
+        //req.body.photo = `/photos/${req.file.filename}`;//Capturamos el nobre de la foto
         const userSave = await model.save(req.body);
         if( !userSave ) return res.status(400).json({'msj':"Bad Request"});
         return res.status(200).json(userSave);

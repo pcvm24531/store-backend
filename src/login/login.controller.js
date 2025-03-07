@@ -16,7 +16,7 @@ async function auth( req, res ) {
         if( !userIsValid ) return res.status(400).json({'msg':`El usuario: ${username} o Contraseña: ${password} son incorrectos.`});
 
         if(userIsValid){
-            const token = createToken();
+            const token = createToken(user[0].id);
             return res.status(200).json({token: token});
         }
     } catch (error) {
@@ -24,11 +24,14 @@ async function auth( req, res ) {
     }
 }
 
-function createToken() {
+function createToken( personID ) {
     const token = jwt.sign(
-        {course: COURSE},
-        KEY,
-        {expiresIn: 60*10}//60 segudos por 2
+        {
+            id: personID,
+            course: COURSE,
+            lastActivity: Date.now()
+        },
+        KEY,        
     );
     return token;
 }
